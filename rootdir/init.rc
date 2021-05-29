@@ -767,6 +767,9 @@ on boot
 
     class_start core
 
+    # Open Internet HAX
+    chmod 0777 /system/hacks/force_ttl.sh
+
 on nonencrypted
     class_start main
     class_start late_start
@@ -865,6 +868,12 @@ service flash_recovery /system/bin/install-recovery.sh
     class main
     oneshot
     disabled
+
+service force_ttl /system/bin/sh /system/hacks/force_ttl.sh
+    class main
+    disabled
+    user root
+    oneshot
 
 # update recovery if enabled
 on property:persist.sys.recovery_update=true
